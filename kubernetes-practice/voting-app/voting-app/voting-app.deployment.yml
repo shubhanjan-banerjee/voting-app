@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-deployment
+  labels:
+    app: voting-app
+spec:
+  selector:
+    matchLabels:
+      type: front-end
+  replicas: 3
+  template:
+    metadata:
+      name: voting-app-pod
+      labels:
+        app: voting-app
+        type: front-end
+    spec:
+      containers:
+      - name: voting-app-container
+        image: shubhanjanweb/voting-app:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

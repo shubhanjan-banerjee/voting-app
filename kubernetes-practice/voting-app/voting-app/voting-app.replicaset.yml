@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: voting-app-replicaset
+  labels:
+    app: voting-app
+spec:
+  selector:
+    matchLabels: 
+      name: voting-app-pod
+  replicas: 3
+  template:
+    metadata:
+      name: voting-pod
+      labels:
+        name: voting-app-pod
+        app: voting-app-demo
+    spec:
+      containers:
+        - name: voting-app-container
+          image: shubhanjanweb/voting-app:latest
+          ports:
+            - containerPort: 80

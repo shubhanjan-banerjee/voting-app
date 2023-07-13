@@ -50,6 +50,29 @@ kubectl create -f ./kubernetes-practice/voting-app/result-app/result-app.service
 kubectl get svc
 minikube service result-app-service --url
 
+kubectl create -f ./kubernetes-practice/voting-app/voting-app/voting-app.replicaset.yml
+kubectl replace -f ./kubernetes-practice/voting-app/voting-app/voting-app.replicaset.yml
+
+kubectl scale --replicas=6 replicaset voting-app-replicaset
+kubectl delete replicaset voting-app-replicaset
+
+kubectl create -f ./kubernetes-practice/voting-app/voting-app/voting-app.deployment.yml
+kubectl get all
+kubectl apply -f ./kubernetes-practice/voting-app/voting-app/voting-app.deployment.yml
+kubectl describe deployment voting-app-deployment
+kubectl rollout status deployment voting-app-deployment
+kubectl rollout history deployment.apps/voting-app-deployment
+kubectl describe deployment voting-app-deployment
+kubectl rollout undo deployment.apps/voting-app-deployment
+
+kubectl create -f ./kubernetes-practice/voting-app/voting-app/voting-app.deployment.yml
+kubectl create -f ./kubernetes-practice/voting-app/result-app/result-app.deployment.yml
+kubectl create -f ./kubernetes-practice/voting-app/worker-app/worker-app.deployment.yml
+kubectl create -f ./kubernetes-practice/voting-app/redis/redis.deployment.yml
+kubectl create -f ./kubernetes-practice/voting-app/postgres/postgres.deployment.yml
+
+#examples
+
 kubectl create deployment hello-minikube --image venuopalshatri/microserviceone:latest
 kubectl expose deployment hello-minikube --type=NodePort - -port=3000
 kubectl get services hello-minikube

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: result-app-replicaset
+  labels:
+    app: result-app
+spec:
+  selector:
+    matchLabels: 
+      name: result-app-pod
+  replicas: 3
+  template:
+    metadata:
+      name: result-pod
+      labels:
+        name: result-app-pod
+        app: result-app-demo
+    spec:
+      containers:
+        - name: result-app-container
+          image: shubhanjanweb/result-app:latest
+          ports:
+            - containerPort: 80
