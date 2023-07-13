@@ -1,28 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db
-  labels:
-    name: postgres-deployment
-    app: demo-voting-app
+  name: voting-app
 spec:
   selector:
     matchLabels:
-      type: back-end
+      app: voting-app
   replicas: 3
   template:
     metadata:
-      name: postgres-pod
       labels:
-        app: postgres
-        type: back-end
+        app: voting-app
     spec:
       containers:
-      - name: postgres-container
-        image: postgres
+      - name: voting-app-container
+        image: shubhanjanweb/voting-app:latest
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-          - containerPort: 5432
+        - containerPort: 80

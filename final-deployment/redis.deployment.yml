@@ -1,28 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db
-  labels:
-    name: postgres-deployment
-    app: demo-voting-app
+  name: redis
 spec:
   selector:
     matchLabels:
-      type: back-end
+      app: redis
   replicas: 3
   template:
     metadata:
-      name: postgres-pod
       labels:
-        app: postgres
-        type: back-end
+        app: redis
     spec:
       containers:
-      - name: postgres-container
-        image: postgres
+      - name: redis
+        image: redis
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-          - containerPort: 5432
+        - containerPort: 6379
