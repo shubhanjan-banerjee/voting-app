@@ -1,0 +1,25 @@
+version : "3"
+services:
+  voting:
+    image: shubhanjanweb/voting-app
+    ports:
+      - "3001:80"
+    depends_on:
+      - redis
+  result:
+    image: shubhanjanweb/result-app
+    ports:
+      - "3002:80"
+    depends_on:
+      - db
+  worker:
+    image: shubhanjanweb/worker-app
+    depends_on:
+      - redis
+      - db
+  redis:
+    image: redis
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust

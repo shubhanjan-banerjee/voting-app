@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msone-deployment
+  
+  labels:
+    app: msone
+spec:
+  selector:
+    matchLabels:
+      type: back-end
+  replicas: 3
+  template:
+    metadata:
+      name: msone-pod
+      labels:
+        app: msone
+        type: back-end
+    spec:
+      containers:
+        - name: msone-container
+          image: venuopalshastri/microserviceone:v2
+
+

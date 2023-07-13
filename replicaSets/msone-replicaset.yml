@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: msone-replicaset
+  labels:
+    app: msone
+spec:
+  selector:
+    matchLabels:
+      name: msone-pod
+  replicas: 6
+  template:
+    metadata:
+      name: msone-pod
+      labels:
+        name: msone-pod
+        app : microservice-one-demo
+    spec:
+      containers:
+        - name: msone-container
+          image: venuopalshastri/microserviceone:latest
+
+

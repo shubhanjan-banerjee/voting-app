@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-deployment
+  labels:
+    name: voting-app-deployment
+    app: deom-voting-app
+spec:
+  selector:
+    matchLabels:
+      name: voting-app-pod
+      app: demo-voting-app
+  replicas: 3
+  template:
+    metadata:
+      name: voting-app-pod
+      labels:
+        name: voting-app-pod
+        app: demo-voting-app
+    spec:
+      containers:
+       - name: voting-app
+         image: venuopalshastri/voting-app:latest
+         ports:
+          - containerPort: 80
+
+
