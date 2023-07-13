@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: result-app-pod
+  labels:
+    name: result-app-pod
+    app: result-app-demo
+spec:
+  containers:
+  - name: result-app-pod
+    image: shubhanjanweb/result-app:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
