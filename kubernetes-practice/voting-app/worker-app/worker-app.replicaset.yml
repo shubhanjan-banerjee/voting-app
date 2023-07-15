@@ -1,13 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
-  name: worker-app-deployment
+  name: worker-app-replicaset
   labels:
-    name: worker-app-deployment
+    name: worker-app-replicaset
     app: demo-voting-app
 spec:
   selector:
-    matchLabels:
+    matchLabels: 
       name: worker-app-pod
   replicas: 3
   template:
@@ -15,14 +15,10 @@ spec:
       name: worker-app-pod
       labels:
         name: worker-app-pod
-        app: demo-voting-app
+        app: worker-app-demo
     spec:
       containers:
       - name: worker-app-container
         image: shubhanjanweb/worker-app:latest
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 80

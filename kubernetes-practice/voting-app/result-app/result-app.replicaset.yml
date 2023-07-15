@@ -3,7 +3,8 @@ kind: ReplicaSet
 metadata:
   name: result-app-replicaset
   labels:
-    app: result-app
+    name: result-app-replicaset
+    app: demo-voting-app
 spec:
   selector:
     matchLabels: 
@@ -11,10 +12,10 @@ spec:
   replicas: 3
   template:
     metadata:
-      name: result-pod
+      name: result-app-pod
       labels:
         name: result-app-pod
-        app: result-app-demo
+        app: demo-voting-app
     spec:
       containers:
         - name: result-app-container

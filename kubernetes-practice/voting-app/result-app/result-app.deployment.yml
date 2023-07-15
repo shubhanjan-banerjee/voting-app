@@ -8,14 +8,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      type: front-end
+      name: result-app-pod
   replicas: 3
   template:
     metadata:
       name: result-app-pod
       labels:
-        app: result-app
-        type: front-end
+        name: result-app-pod
+        app: demo-voting-app
     spec:
       containers:
       - name: result-app-container

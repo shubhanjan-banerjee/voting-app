@@ -1,21 +1,21 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
-  name: redis-deployment
+  name: redis-replicaset
   labels:
-    name: redis-deployment
+    name: redis-replicaset
     app: demo-voting-app
 spec:
   selector:
-    matchLabels:
+    matchLabels: 
       name: redis-pod
   replicas: 3
   template:
     metadata:
       name: redis-pod
-      labels:
-        name: redis-pod
-        app: demo-voting-app
+    labels:
+      name: redis-pod
+      app: demo-voting-demo
     spec:
       containers:
       - name: redis-container

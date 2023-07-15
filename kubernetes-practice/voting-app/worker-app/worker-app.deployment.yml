@@ -8,14 +8,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      type: back-end
+      name: worker-app-pod
   replicas: 3
   template:
     metadata:
       name: worker-app-pod
       labels:
-        app: worker-app
-        type: back-end
+        name: worker-app-pod
+        app: demo-voting-app
     spec:
       containers:
       - name: worker-app-container
